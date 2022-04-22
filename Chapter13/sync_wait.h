@@ -56,7 +56,7 @@ class SyncWaitTask { // A helper class only used by sync_wait()
     std::exception_ptr error_;
 
 #if defined(__cpp_lib_semaphore)
-    std::binary_semaphore semaphore_;
+    std::binary_semaphore semaphore_{1};
 #else
     bool ready_{false};
     std::mutex mtx_;
