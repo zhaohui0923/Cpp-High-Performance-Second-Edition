@@ -6,12 +6,17 @@
 #include <numeric>
 #include <vector>
 
+// 测试顺序变形函数
 TEST(Transform, Sequential) {
-
+  // 输入数据
   const auto src = std::vector{1, 2, 3, 4};
+  // 输出数据
   auto dst = std::vector<int>(src.size());
+  // 变形函数
   auto f = [](int x) { return x * x; };
+  // 调用顺序变形函数
   ::transform(src.begin(), src.end(), dst.begin(), f);
+  // 验证输出数据
   for (size_t i = 0; i < dst.size(); ++i) {
     ASSERT_TRUE(dst.at(i) == f(src.at(i)));
   }

@@ -10,6 +10,10 @@
 
 template <class SrcIt, class DstIt, class Func>
 auto transform(SrcIt first, SrcIt last, DstIt dst, Func func) {
+  // 循环不变式:
+  // [first, last)是源数据待处理区间
+  // [dst, )是目标数据待写入区间
+  // func是变形函数
   while (first != last) {
     *dst++ = func(*first++);
   }
