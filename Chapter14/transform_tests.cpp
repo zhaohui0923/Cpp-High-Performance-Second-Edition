@@ -22,14 +22,20 @@ TEST(Transform, Sequential) {
   }
 }
 
+// 测试简单并行变形函数
 TEST(Transform, NaiveParallel) {
+  // 输入数据元素个数
   const auto n = 1'000'000ul;
+  // 生成输入数据元素序列
   auto src = std::vector<int>(n);
   std::iota(src.begin(), src.end(), 0);
+  // 输出数据
   auto dst = std::vector<int>(src.size());
+  // 变形函数
   auto f = [](int x) { return x * x; };
+  // 调用简单并行变形函数
   par_transform_naive(src.begin(), src.end(), dst.begin(), f);
-
+  // 验证输出数据
   for (size_t i = 0; i < dst.size(); ++i) {
     ASSERT_TRUE(dst.at(i) == f(src.at(i)));
   }
